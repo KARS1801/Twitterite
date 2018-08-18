@@ -1,0 +1,23 @@
+{
+	"name": "namespace/app",
+	"description": "This is just sample",
+	"require": {
+		"torophp/torophp": "dev-master",
+		"twig/twig": "^2.0"
+		
+	},
+	"authors": [
+		{
+			"name": "ABC",
+			"email": "abc@xyz.com"
+		}
+
+	],
+	
+"autoload": {
+   "psr-4":{
+			"Links\\Controllers\\":"app/controllers",
+			"Links\\Models\\":"app/models"
+		}
+  }
+}
