@@ -11,6 +11,7 @@
 			'/' => Links\Controllers\RegisterController::class,
 			'/register' => Links\Controllers\RegisterController::class,
 			'/login' => Links\Controllers\LoginController::class,
+			'/logout' => Links\Controllers\LogoutController::class,
 			'/dashboard' => Links\Controllers\DashboardController::class
 			
 		));

@@ -73,7 +73,7 @@ class Users{
 			mysqli_close($con);
 			//echo $result['email'];
 			if($result)
-			{return true;}
+			{return $result;}
 			else{return false;}
 		}
 

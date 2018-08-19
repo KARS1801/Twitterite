@@ -20,9 +20,28 @@ class LoginController extends ViewController
 
   	$user=Users::loginUser($login);
 
-	if(!$user){header("location:/login");}
-	else{header("location:/dashboard");}
+	if(!$user)
+  {
+    header("location:/login");
+  }
+	else
+    {
+      $this->loguser($user);
+      header("location:/dashboard");
+    }
 
+  }
+
+
+
+
+  function loguser($usr)
+  {
+    session_start();
+
+    $_SESSION["loggedin"] = true;
+    $_SESSION["userid"] =  $usr['user_id'];
+    $_SESSION["username"] = $usr['name'];
   }
 
 }
