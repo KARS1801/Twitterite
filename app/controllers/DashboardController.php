@@ -1,14 +1,24 @@
 <?php
 namespace Links\Controllers;
+use Links\Models\Tweets;
 class DashboardController extends ViewController
 {
 	 public function get()
   {
       session_start();
   		$linkData="karan";
-  		$userData=$_SESSION["username"];
+  		$username=$_SESSION["username"];
+  		$userid=$_SESSION["userid"];
 
-    $this->render("dashboard.html", ['links' => $linkData, 'user' => $userData]);
+  		//function to add current user posts to the div
+
+
+  		$current_tweets=Tweets::showCurrentTweets($userid);
+  		//echo $current_tweets[0];
+
+
+
+    $this->render("dashboard.html", ['ctweets' => $current_tweets, 'username' => $username]);
 
   }
 

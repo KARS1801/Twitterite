@@ -8,13 +8,18 @@ class AddtweetController extends ViewController
   	session_start();
       $tweet=$_POST["tweet"];
       $user_id=$_SESSION["userid"];
+      $username=$_SESSION["username"];
 
 
 
-      $data=array("tweet"=>$tweet,"id"=>$user_id);
+      $data=array("tweet"=>$tweet,"id"=>$user_id,"prefix"=>$username);
 
 	  $res=Tweets::addtweet($data);
 	  if($res){ header("location:/dashboard");}
+
+
+
+	  
 	  
 
   }
