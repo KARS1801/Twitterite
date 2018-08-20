@@ -1,17 +1,13 @@
 <?php
 namespace Links\Models;
+require 'ConnectionDB.php';
+use Links\Models\connectionclass;
 
-class Users{
+class Users extends connectionclass
+{
 	public function registerUser($data=[]){
 
-		$servername = "localhost";
-		$username = "root";
-		$password = "password";
-		$dbname = "ajax";
-
-
-		// Create connection
-		$con = mysqli_connect($servername, $username, $password, $dbname);
+		
 		
 		$name=$data['username'];
 		$email=$data['email'];
@@ -21,12 +17,10 @@ class Users{
 
 
 		// Check connection
-		if (mysqli_connect_errno()) {
+		
 
-			  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-			return false;
-		}
-		else{
+		$con=connectionclass::connect();
+		
 			$sql= "INSERT INTO users (name, email, pnumber, password) VALUES ('$name','$email','$pnumber','$password')";
 
 			mysqli_query($con,$sql)
@@ -34,7 +28,7 @@ class Users{
 			mysqli_close($con);
 			
 			return true;
-		}
+		
 
 	}
 
