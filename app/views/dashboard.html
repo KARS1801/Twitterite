@@ -7,23 +7,7 @@
 
 
 
-<script>
-function showHint(str) {
-    if (str.length == 0) { 
-      document.getElementById("txtHint").innerHTML = "";
-        return;
-    } else {
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("txtHint").innerHTML = this.responseText;
-            }
-        };
-        xmlhttp.open("GET", "gethint.php?q=" + str, true);
-        xmlhttp.send();
-    }
-}
-</script>
+
 
 	
 
@@ -32,8 +16,8 @@ function showHint(str) {
       <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm" style="height: 150px;">
         <img class="mb-4" src="https://www.freeiconspng.com/uploads/letter-k-icon-png-6.png" alt="" width="100" height="110">
         <div class="lh-100">
-          <h2 class="mb-0 lh-100" style="color: black;">Twitterite</h6>
-          <h6 style="color: black;">A place to share your thoughts..</h4>
+          <h2 class="mb-0 lh-100" style="color: black;">Twitterite</h2>
+          <h6 style="color: black;">A place to share your thoughts..</h6>
         </div>
       </div>
       
@@ -62,8 +46,8 @@ function showHint(str) {
             {{ctweet.tweets}}
           </p>
           <form action="/deletetweet" method="POST">
-            <input type="text" name="tobedel_prefix" value='{{ctweet.prefix}}'>
-            <input type="text" name="tobedel_tweet" value='{{ctweet.tweets}}'>
+            <input type="text" name="tobedel_prefix" value='{{ctweet.prefix}}' style="display: none;">
+            <input type="text" name="tobedel_tweet" value='{{ctweet.tweets}}' style="display: none;">
           <input type="submit" value="DELETE" class="btn btn-danger">
           </form>
         </div>
@@ -81,57 +65,44 @@ function showHint(str) {
       <div class="my-3 p-3 bg-white rounded shadow-sm">
         
 
-          <form class="form-inline">
+          <form class="form-inline" action="/search" method="POST">
         <div class="input-group">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">@</span>
           </div>
-          <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" onkeyup="showPosts(this.value)">
+          <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" name="user_search">
         </div>
         &nbsp&nbsp&nbsp&nbsp&nbsp
-        <h6 class="pb-2 mb-0">Search the user..</h6>
+        <input type="submit" class="btn btn-success" value="Search">
       </form>
-
+<!--
 <form> 
 First name: <input type="text" onkeyup="showHint(this.value)">
 </form>
       <p class="karan">Suggestions: <span id="txtHint"></span></p>
-
+-->
+{% set i=0 %}
+{% for utweet in utweets %}
 
         <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
           <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
             <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">Full Name</strong>
+              <strong><a href="#">@{{usersearched}}</a></strong>
              
             </div>
-            <span class="d-block">@username</span>
+            <span class="d-block">{{utweet.tweets}}</span>
           </div>
         </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">Full Name</strong>
-              
-            </div>
-            <span class="d-block">@username</span>
-          </div>
-        </div>
-        <div class="media text-muted pt-3">
-          <img data-src="holder.js/32x32?theme=thumb&bg=007bff&fg=007bff&size=1" alt="" class="mr-2 rounded">
-          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-            <div class="d-flex justify-content-between align-items-center w-100">
-              <strong class="text-gray-dark">Full Name</strong>
-              
-            </div>
-            <span class="d-block">@username</span>
-          </div>
-        </div>
+{% set i=i+1 %}
+{% endfor %}
+ 
+
         <small class="d-block text-right mt-3">
-          <a href="#">All suggestions</a>
+          <a href="#">See All</a>
         </small>
       </div>
+
+
     </main>
 
     <!-- Bootstrap core JavaScript

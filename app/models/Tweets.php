@@ -79,4 +79,29 @@ class Tweets extends connectionclass
 			
 			return true;
 	}
+
+
+
+	public function SearchUser($usersearch)
+	{
+		$con=connectionclass::connect();
+
+
+		$sql= "SELECT tweets FROM tweets WHERE prefix='$usersearch'";
+
+			$res=mysqli_query($con,$sql)
+			or die(mysqli_error($con));
+			if (!$res) {
+				return false;
+			}
+           else{
+           	while ($result = mysqli_fetch_array($res,MYSQLI_ASSOC)) {
+			    $results[] = $result;
+            }
+			mysqli_close($con);
+			
+			return $results;
+           }
+			
+	}
 }

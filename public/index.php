@@ -14,6 +14,7 @@
 			'/logout' => Links\Controllers\LogoutController::class,
 			'/addtweet' => Links\Controllers\AddtweetController::class,
 			'/deletetweet' => Links\Controllers\DeletetweetController::class,
+			'/search' => Links\Controllers\SearchController::class,
 			'/dashboard' => Links\Controllers\DashboardController::class
 			
 		));

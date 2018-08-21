@@ -10,6 +10,9 @@ class DashboardController extends ViewController
   		$username=$_SESSION["username"];
   		$userid=$_SESSION["userid"];
 
+      $searchres=$_SESSION["usersearchres"];
+      $usersearch=$_SESSION["usersearch"];
+
   		//function to add current user posts to the div
 
 
@@ -18,10 +21,9 @@ class DashboardController extends ViewController
 
 
 
-    $this->render("dashboard.html", ['ctweets' => $current_tweets, 'username' => $username]);
+    $this->render("dashboard.html", ['ctweets' => $current_tweets, 'username' => $username, 'usersearched' => $usersearch, 'utweets' => $searchres]);
 
   }
-
  
 }
 
