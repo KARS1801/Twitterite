@@ -62,4 +62,21 @@ class Tweets extends connectionclass
 			
 
 	}
+
+
+
+	public function deleteTweet($deltweet,$delprefix)
+	{
+		$con=connectionclass::connect();
+
+
+		
+			$sql= "DELETE FROM tweets WHERE prefix='$delprefix' AND tweets='$deltweet'";
+
+			mysqli_query($con,$sql)
+			or die(mysqli_error($con));
+			mysqli_close($con);
+			
+			return true;
+	}
 }

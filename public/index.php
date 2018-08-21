@@ -13,6 +13,7 @@
 			'/login' => Links\Controllers\LoginController::class,
 			'/logout' => Links\Controllers\LogoutController::class,
 			'/addtweet' => Links\Controllers\AddtweetController::class,
+			'/deletetweet' => Links\Controllers\DeletetweetController::class,
 			'/dashboard' => Links\Controllers\DashboardController::class
 			
 		));
