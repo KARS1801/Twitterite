@@ -26,7 +26,7 @@ class Profiles extends connectionclass
 
 
 
-	public function showProfilebyid($userid)
+	public function showProfilebyid1($userid)
 	{
 		$con=connectionclass::connect();
 		$sql= "SELECT * FROM profiles WHERE user_id='$userid'";
@@ -39,7 +39,75 @@ class Profiles extends connectionclass
 			return $result;
 	}
 
+
+
+	public function showProfilebyid($userid)
+	{
+		$con=connectionclass::connect();
+		$sql= "SELECT * FROM profiles WHERE user_id='$userid'";
+
+			$res=mysqli_query($con,$sql)
+			or die(mysqli_error($con));
+			$result1 = mysqli_fetch_array($res,MYSQLI_ASSOC);
+
+
+			$sql1= "SELECT * FROM tweets WHERE user_id='$userid'";
+
+			$res1=mysqli_query($con,$sql1)
+			or die(mysqli_error($con));
+			
+           
+           	while ($result = mysqli_fetch_array($res1,MYSQLI_ASSOC)) {
+			    $results[] = $result;
+            }
+			
+			
+//$resultf = array('$result1','$results');
+$resultf = array('profile' => $result1, 'tweets' => $results);
+           
+
+
+
+			mysqli_close($con);
+			
+			return $resultf;
+	}
+
 	public function showProfilebyname($username)
+	{
+
+		$con=connectionclass::connect();
+		$sql= "SELECT * FROM profiles WHERE username='$username'";
+
+			$res=mysqli_query($con,$sql)
+			or die(mysqli_error($con));
+			$result1 = mysqli_fetch_array($res,MYSQLI_ASSOC);
+
+$sql1= "SELECT * FROM tweets WHERE prefix='$username'";
+
+			$res1=mysqli_query($con,$sql1)
+			or die(mysqli_error($con));
+			
+           
+           	while ($result = mysqli_fetch_array($res1,MYSQLI_ASSOC)) {
+			    $results[] = $result;
+            }
+			
+			
+//$resultf = array('$result1','$results');
+$resultf = array('profile' => $result1, 'tweets' => $results);
+
+
+
+			mysqli_close($con);
+
+			
+			
+			return $resultf;
+	}
+
+
+	public function showProfilebyname1($username)
 	{
 
 		$con=connectionclass::connect();

@@ -1,7 +1,8 @@
 <?php
 namespace Links\Controllers;
 use Links\Models\Profiles;
-class SelfprofileController extends ViewController
+use Links\Models\Tweets;
+class ShowprofileController extends ViewController
 {
 	 public function get()
   {
@@ -23,14 +24,20 @@ class SelfprofileController extends ViewController
     if($usernamek)
     {
       $showprofile=Profiles::showProfilebyname($usernamek);
+      //$searchres=Tweets::SearchUser($usernamek);
     }
     else
     {
-      $showprofile=Profiles::showProfilebyid($userid);
+      $showprofile=Profiles::showProfilebyid($userid);    
+      //$searchres=Tweets::SearchUser($username);
     }
 
+    $profile=$showprofile["profile"];
+    $utweets=$showprofile["tweets"];
+   
 
-    $this->render("showprofile.html", ['username' => $username, 'profile' =>$showprofile]);
+
+    $this->render("showprofile.html", ['username' => $username, 'profile' =>$profile, 'utweets' => $utweets,]);
     
     
 

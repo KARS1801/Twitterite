@@ -14,6 +14,7 @@ class Tweets extends connectionclass
 		$tweet=$data['tweet'];
 		$id=$data['id'];
 		$prefix=$data['prefix'];
+		$date = date('Y/m/d H:i:s');
 		
 		
         $tweet=preg_replace('/[^a-zA-Z0-9_ -]/s', ' ', $tweet);
@@ -26,7 +27,7 @@ class Tweets extends connectionclass
 
 
 		
-			$sql= "INSERT INTO tweets (user_id, prefix, tweets) VALUES ('$id', '$prefix', '$tweet')";
+			$sql= "INSERT INTO tweets (user_id, prefix, tweets, tweetdate) VALUES ('$id', '$prefix', '$tweet', '$date')";
 
 			mysqli_query($con,$sql)
 			or die(mysqli_error($con));
@@ -42,7 +43,7 @@ class Tweets extends connectionclass
 	{
 		$con=connectionclass::connect();
 
-		$sql= "SELECT prefix, tweets FROM tweets WHERE user_id='$userid'";
+		$sql= "SELECT prefix, tweets, tweetdate FROM tweets WHERE user_id='$userid'";
 
 			$res=mysqli_query($con,$sql)
 			or die(mysqli_error($con));
@@ -87,7 +88,7 @@ class Tweets extends connectionclass
 		$con=connectionclass::connect();
 
 
-		$sql= "SELECT tweets FROM tweets WHERE prefix='$usersearch'";
+		$sql= "SELECT * FROM tweets WHERE prefix='$usersearch'";
 
 			$res=mysqli_query($con,$sql)
 			or die(mysqli_error($con));
