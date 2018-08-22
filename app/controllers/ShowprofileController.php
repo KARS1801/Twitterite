@@ -1,15 +1,17 @@
 <?php
 namespace Links\Controllers;
 use Links\Models\Profiles;
-use Links\Models\Tweets;
 class ShowprofileController extends ViewController
 {
 	 public function get()
   {
     session_start();
     $username=$_SESSION["username"];
+
+    $showfollow=$_SESSION["followed"];
+    $showfollowers=$_SESSION["following"];
     //$this->render("profile.html");
-    $this->render("showprofile.html", ['username' => $username]);
+    $this->render("showprofile.html", ['username' => $username, 'followed' => $showfollow, 'following' => $showfollowers]);
   }
 
   public function post()
@@ -21,6 +23,10 @@ class ShowprofileController extends ViewController
     session_start();
     $userid=$_SESSION["userid"];
     $username=$_SESSION["username"];
+
+    $showfollow=$_SESSION["followed"];
+    $showfollowers=$_SESSION["following"];
+
     if($usernamek)
     {
       $showprofile=Profiles::showProfilebyname($usernamek);
@@ -37,7 +43,7 @@ class ShowprofileController extends ViewController
    
 
 
-    $this->render("showprofile.html", ['username' => $username, 'profile' =>$profile, 'utweets' => $utweets,]);
+    $this->render("showprofile.html", ['username' => $username, 'profile' =>$profile, 'utweets' => $utweets, 'followed' => $showfollow, 'following' => $showfollowers]);
     
     
 

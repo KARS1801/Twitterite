@@ -105,4 +105,42 @@ class Tweets extends connectionclass
            }
 			
 	}
+
+
+	public function showfollowers($user_id)
+	{
+		$con=connectionclass::connect();
+
+
+		
+			$sql= "SELECT fusername FROM follow WHERE user_id='$user_id'";
+
+			$res=mysqli_query($con,$sql)
+			or die(mysqli_error($con));
+			while ($result = mysqli_fetch_array($res,MYSQLI_NUM)) {
+			    $results[] = $result;
+			}
+			mysqli_close($con);
+			
+			return $results;
+	}
+
+
+	public function showfollowed($userid)
+	{
+		$con=connectionclass::connect();
+
+
+		
+			$sql= "SELECT username FROM follow WHERE fuserid='$userid'";
+
+			$res=mysqli_query($con,$sql)
+			or die(mysqli_error($con));
+			while ($result = mysqli_fetch_array($res,MYSQLI_NUM)) {
+			    $results[] = $result;
+			}
+			mysqli_close($con);
+			
+			return $results;
+	}
 }

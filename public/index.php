@@ -17,6 +17,9 @@
 			'/search' => Links\Controllers\SearchController::class,
 			'/profile' => Links\Controllers\ProfileController::class,
 			'/showprofile' => Links\Controllers\ShowprofileController::class,
+			'/followuser' => Links\Controllers\FollowuserController::class,
+			'/unfollow' => Links\Controllers\UnfollowController::class,
+			'/block' => Links\Controllers\BlockController::class,
 			'/dashboard' => Links\Controllers\DashboardController::class
 			
 		));

@@ -30,7 +30,38 @@
        <p><a class="btn btn-lg btn-success" href="/profile" role="button">Edit Profile</a></p>
 
 {% else %}
-       <p><a class="btn btn-lg btn-success" href="#" role="button">ADD User</a></p>
+
+
+
+{% set k=0 %}
+{% for follow in followed %}
+{% if profile.username==follow[0] %}
+{% set k=k+1 %}
+{% endif %}
+
+{% endfor %}
+
+
+
+
+{% if k==0 %}
+
+<form action="/followuser" method="POST">
+  <input type="text" name="userid" value="{{profile.user_id}}" style="display: none;">
+  <input type="text" name="username" value="{{profile.username}}" style="display: none;">
+  <input type="submit" class="btn btn-lg btn-success" value="Follow {{profile.username}}">
+</form>
+
+{% elseif k==1 %}
+<form action="/unfollow" method="POST">
+  <input type="text" name="fuserid" value="{{profile.user_id}}" style="display:none;">
+  <input type="submit" class="btn btn-lg btn-success" value="UnFollow {{profile.username}}">
+</form>
+{% endif %}
+
+
+
+      
 {% endif %}
       </div>
 
@@ -43,6 +74,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">POSTs</th>
+      <th scope="col">Date/Time</th>
     </tr>
   </thead>
   <tbody>

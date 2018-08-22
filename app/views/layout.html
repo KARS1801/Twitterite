@@ -26,22 +26,67 @@
             <a class="btn btn-dark nav-link" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-dark nav-link" href="/profile">Edit profile</a>
+            <a class="btn btn-dark nav-link" href="/profile" style="color: #fff;">Edit profile</a>
           </li>
           <li class="nav-item">
             <form action="/showprofile" method="POST">
-                <button type="submit" class="btn btn-dark nav-link">{{username}}</button>
+                <button type="submit" class="btn btn-dark nav-link" style="color: #fff;">{{username}}</button>
               </form>
           </li>
           <li class="nav-item">
-            <a class="btn btn-dark nav-link" href="/logout">Logout</a>
-          </li>
-          
-        
+            <a class="btn btn-dark nav-link" href="/logout" style="color: #fff;">Logout</a>
+          </li> 
+
+
+          <li class="nav-item" style="margin-left: 20px;">
+             <div class="dropdown show">
+  <a class="btn nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+    You Followed
+  </a>
+
+  <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLink" style="background-color: #212529;border-radius: 20px;">
+    {% for follow in followed %}
+    <form action="/showprofile" method="POST" style="margin-left: 5px;margin-right: 5px;">
+                <input type="text" name="username" value="{{follow[0]}}" style="display:none;">
+                <input type="submit" class="btn btn-secondary btn-block text-center" value="{{follow[0]}}">
+              </form>
+     {% endfor %}
+  </div>
+</div>
+          </li> 
+ 
+                    <li class="nav-item" style="margin-left: 20px;">
+             <div class="dropdown show">
+  <a class="btn nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLin" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+    Following You
+  </a>
+
+  <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuLin" style="background-color: #212529;border-radius: 20px;">
+    {% for followk in following %}
+    <form action="/showprofile" method="POST" style="margin-left: 5px;margin-right: 5px;display: inline;">
+                <input type="text" name="username" value="{{followk[0]}}" style="display:none;">
+                <input type="submit" class="btn btn-secondary text-center" value="{{followk[0]}}">
+              </form>
+
+              <form action="/block" method="POST" style="margin-left: 5px;margin-right: 5px;display: inline;">
+                <input type="text" name="username" value="{{followk[0]}}" style="display:none;">
+                <button type="submit" class="btn btn-danger">X</button>
+              </form>
+              <br><br>
+     {% endfor %}
+  </div>
+</div>
+          </li> 
+
         </ul>
         
       </div>
       <img class="mb-4" src="https://www.freeiconspng.com/uploads/letter-k-icon-png-6.png" alt="" width="50" height="50">
+
+     
+
+
+
     </nav>
 
 <br><br><br><br>

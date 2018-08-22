@@ -65,9 +65,7 @@
 
        
         
-        <small class="d-block text-right mt-3">
-          <a href="#">See All</a>
-        </small>
+        
       </div>
 
       <div class="my-3 p-3 bg-white rounded shadow-sm">
@@ -89,6 +87,36 @@ First name: <input type="text" onkeyup="showHint(this.value)">
 </form>
       <p class="karan">Suggestions: <span id="txtHint"></span></p>
 -->
+{% set v=0 %}
+{% for follow in followed %}
+{% if utweets[0].prefix==follow[0] %}
+{% set v=v+1 %}
+{% endif %}
+
+{% endfor %}
+
+
+
+
+{% if v==0 %}
+{% if utweets[0] %}
+ <form action="/followuser" method="POST">
+  <input type="text" name="userid" value="{{utweets[0].user_id}}" style="display: none;">
+  <input type="text" name="username" value="{{utweets[0].prefix}}" style="display: none;">
+  <input type="submit" class="btn btn-lg btn-success" value="Follow {{utweets[0].prefix}}">
+</form>
+{% endif %}
+
+{% elseif v==1 %}
+ <form action="/unfollow" method="POST">
+  <input type="text" name="fuserid" value="{{utweets[0].user_id}}" style="display: none;">
+  <input type="submit" class="btn btn-lg btn-success" value="UnFollow {{utweets[0].prefix}}">
+</form>
+{% endif %}
+
+
+
+
 {% set i=0 %}
 {% for utweet in utweets %}
 
@@ -112,9 +140,7 @@ First name: <input type="text" onkeyup="showHint(this.value)">
 {% endfor %}
  
 
-        <small class="d-block text-right mt-3">
-          <a href="#">See All</a>
-        </small>
+       
       </div>
 
 

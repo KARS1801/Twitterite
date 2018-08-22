@@ -7,8 +7,11 @@ class ProfileController extends ViewController
   {
     session_start();
     $username=$_SESSION["username"];
+
+    $showfollow=$_SESSION["followed"];
+    $showfollowers=$_SESSION["following"];
     //$this->render("profile.html");
-    $this->render("profile.html", ['username' => $username]);
+    $this->render("profile.html", ['username' => $username, 'followed' => $showfollow, 'following' => $showfollowers]);
   }
 
   public function post()
@@ -20,11 +23,14 @@ class ProfileController extends ViewController
     $userid=$_SESSION["userid"];
     $username=$_SESSION["username"];
 
+    $showfollow=$_SESSION["followed"];
+    $showfollowers=$_SESSION["following"];
+
     $profile=Profiles::saveProfile($fullname,$username,$age,$occupation,$userid);
     if($profile)
     {
      
-      $this->render("profile.html", ['username' => $username]);
+      $this->render("profile.html", ['username' => $username, 'followed' => $showfollow, 'following' => $showfollowers]);
      // header("location:/profile");
 
     }
