@@ -23,17 +23,20 @@
       <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+            <a class="btn btn-dark nav-link" href="/dashboard">Dashboard <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Add Link</a>
+            <a class="btn btn-dark nav-link" href="/profile">Save profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">{{username}}</a>
+            <form action="/selfprofile" method="POST">
+                <button type="submit" class="btn btn-dark nav-link">{{username}}</button>
+              </form>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout">Logout</a>
+            <a class="btn btn-dark nav-link" href="/logout">Logout</a>
           </li>
+          
         
         </ul>
         

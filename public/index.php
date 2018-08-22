@@ -15,6 +15,8 @@
 			'/addtweet' => Links\Controllers\AddtweetController::class,
 			'/deletetweet' => Links\Controllers\DeletetweetController::class,
 			'/search' => Links\Controllers\SearchController::class,
+			'/profile' => Links\Controllers\ProfileController::class,
+			'/selfprofile' => Links\Controllers\SelfprofileController::class,
 			'/dashboard' => Links\Controllers\DashboardController::class
 			
 		));

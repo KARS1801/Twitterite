@@ -21,7 +21,7 @@ class DashboardController extends ViewController
 
 
 
-    $this->render("dashboard.html", ['ctweets' => $current_tweets, 'username' => $username, 'usersearched' => $usersearch, 'utweets' => $searchres]);
+    $this->render("dashboard.html", ['ctweets' => $current_tweets, 'username' => $username, 'usersearched' => $usersearch, 'utweets' => $searchres, 'userid' => $userid]);
 
   }
  
